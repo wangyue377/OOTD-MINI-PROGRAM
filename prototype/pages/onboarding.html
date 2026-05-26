@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>首次使用引导</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+  <style>
+    #layer-guide { display: none; }
+    #layer-guide.show { display: flex; }
+    #layer-welcome.hide { display: none; }
+  </style>
+</head>
+<body class="antialiased overflow-hidden">
+  <!-- 欢迎页 -->
+  <div id="layer-welcome" class="phone-shell onboard-bg relative flex flex-col px-5 pb-8 safe-bottom rings overflow-hidden">
+    <div class="safe-top pt-4">
+      <div class="w-11 h-11 rounded-full bg-[#FFB347] shadow-lg anim-sun flex items-center justify-center">
+        <i class="fa-solid fa-sun text-white text-xl"></i>
+      </div>
+    </div>
+    <div class="flex-1 flex flex-col justify-center text-center px-2">
+      <h1 class="text-xl font-bold text-slate-900 leading-snug">再也不怕突然下雨</h1>
+      <p class="mt-2 text-slate-600 text-xs leading-relaxed">结合天气与风格偏好，一键生成今日 OOTD</p>
+    </div>
+    <div class="relative h-20 shrink-0">
+      <i class="fa-solid fa-cloud text-white/90 text-5xl absolute bottom-4 left-1/4 anim-float opacity-80"></i>
+      <i class="fa-solid fa-cloud text-white text-4xl absolute bottom-6 right-1/4 anim-cloud opacity-70"></i>
+    </div>
+    <button type="button" id="btn-get-started" class="w-full py-3 rounded-full bg-[#1E3A8A] text-white text-sm font-semibold shadow-lg shrink-0">
+      开始使用
+    </button>
+  </div>
+
+  <!-- 资料引导 Sheet -->
+  <div id="layer-guide" class="fixed inset-0 z-10 items-end justify-center bg-black/40 backdrop-blur-sm">
+    <div class="phone-shell w-full bg-white rounded-t-3xl px-4 pt-4 pb-6 safe-bottom max-h-[78dvh] overflow-y-auto hide-scrollbar shadow-2xl">
+      <div class="w-8 h-1 bg-slate-200 rounded-full mx-auto mb-3"></div>
+      <h2 class="text-base font-bold text-slate-900">完善你的资料</h2>
+      <p class="text-xs text-slate-500 mt-0.5">帮助我们生成更贴合你的 OOTD 建议</p>
+      <form id="form-guide" class="mt-4 space-y-3" onsubmit="return false;">
+        <div>
+          <label class="text-[10px] font-semibold text-slate-500 uppercase">所在城市</label>
+          <div class="mt-1.5 flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 border border-slate-100">
+            <i class="fa-solid fa-location-dot text-[#A5C9FF]"></i>
+            <input type="text" placeholder="例如：上海" class="flex-1 bg-transparent outline-none text-sm" />
+          </div>
+        </div>
+        <div>
+          <label class="text-[10px] font-semibold text-slate-500 uppercase">性别</label>
+          <div class="mt-1.5 grid grid-cols-2 gap-2">
+            <label class="cursor-pointer">
+              <input type="radio" name="guide-gender" value="male" class="peer sr-only" checked />
+              <span class="flex items-center justify-center gap-1 py-2 rounded-xl border-2 border-slate-100 text-sm peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:text-[#1E3A8A] font-medium"><i class="fa-solid fa-mars text-xs"></i>男生</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="guide-gender" value="female" class="peer sr-only" />
+              <span class="flex items-center justify-center gap-1 py-2 rounded-xl border-2 border-slate-100 text-sm peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:text-[#1E3A8A] font-medium"><i class="fa-solid fa-venus text-xs"></i>女生</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <label class="text-[10px] font-semibold text-slate-500 uppercase">个人描述</label>
+          <div class="mt-1.5 bg-slate-50 rounded-xl px-3 py-2 border border-slate-100">
+            <textarea rows="2" placeholder="例如：偏爱宽松、常通勤" class="w-full bg-transparent outline-none text-sm resize-none"></textarea>
+          </div>
+        </div>
+        <a href="ootd.html" class="block w-full py-3 rounded-full bg-[#1E3A8A] text-white text-sm font-semibold text-center">保存并继续</a>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('btn-get-started').addEventListener('click', () => {
+      document.getElementById('layer-welcome').classList.add('hide');
+      document.getElementById('layer-guide').classList.add('show');
+    });
+  </script>
+</body>
+</html>

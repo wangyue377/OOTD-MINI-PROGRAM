@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>我的</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+</head>
+<body class="bg-white text-slate-900 antialiased overflow-hidden">
+  <div class="phone-shell sun-glow flex flex-col overflow-hidden">
+    <nav class="safe-top shrink-0 px-4 pt-1 pb-2">
+      <div class="flex p-1 rounded-2xl bg-slate-100/90">
+        <a href="ootd.html" class="flex-1 py-2 rounded-xl text-xs font-semibold text-slate-500 text-center"><i class="fa-solid fa-cloud-sun mr-1"></i>OOTD</a>
+        <span class="flex-1 py-2 rounded-xl text-xs font-semibold bg-[#1E3A8A] text-white text-center"><i class="fa-regular fa-user mr-1"></i>我的</span>
+      </div>
+    </nav>
+    <header class="shrink-0 px-4 pb-1 flex items-center justify-between">
+      <div>
+        <p class="text-sm font-bold">我的</p>
+        <p class="text-[10px] text-slate-400">个人资料</p>
+      </div>
+      <button type="button" class="w-8 h-8 rounded-full bg-white border border-slate-100 shadow flex items-center justify-center text-slate-600 text-xs"><i class="fa-solid fa-bars"></i></button>
+    </header>
+    <main class="flex-1 min-h-0 overflow-y-auto hide-scrollbar px-4 pb-2 space-y-2">
+      <form class="space-y-2" onsubmit="return false;">
+        <div class="bg-white rounded-2xl shadow p-3 border border-slate-50">
+          <label class="text-[10px] font-semibold text-slate-400">城市</label>
+          <div class="mt-1 flex items-center gap-2">
+            <i class="fa-solid fa-city text-[#A5C9FF] text-sm"></i>
+            <input type="text" value="上海" class="flex-1 outline-none text-sm text-slate-800" />
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-3 border border-slate-50">
+          <label class="text-[10px] font-semibold text-slate-400">性别</label>
+          <div class="mt-1 grid grid-cols-2 gap-2">
+            <span class="flex items-center justify-center py-2 rounded-xl border-2 border-[#1E3A8A] bg-blue-50 text-[#1E3A8A] text-sm font-medium">男生</span>
+            <span class="flex items-center justify-center py-2 rounded-xl border-2 border-slate-100 text-sm text-slate-500">女生</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-3 border border-slate-50">
+          <label class="text-[10px] font-semibold text-slate-400">个人描述</label>
+          <textarea rows="2" class="mt-1 w-full outline-none text-sm resize-none text-slate-800">偏爱宽松休闲，通勤为主，不喜欢太鲜艳的颜色。</textarea>
+        </div>
+        <button type="button" class="w-full py-2.5 rounded-full bg-[#1E3A8A] text-white text-sm font-semibold">保存资料</button>
+      </form>
+    </main>
+    <div class="safe-bottom shrink-0 h-1"></div>
+  </div>
+</body>
+</html>

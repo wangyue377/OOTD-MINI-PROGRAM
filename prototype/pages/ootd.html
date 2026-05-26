@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>首页 · OOTD</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+</head>
+<body class="bg-white text-slate-900 antialiased overflow-hidden">
+  <div class="phone-shell sun-glow flex flex-col overflow-hidden">
+    <nav class="safe-top shrink-0 px-4 pt-1 pb-2">
+      <div class="flex p-1 rounded-2xl bg-slate-100/90">
+        <span class="flex-1 py-2 rounded-xl text-xs font-semibold bg-[#1E3A8A] text-white text-center"><i class="fa-solid fa-cloud-sun mr-1"></i>OOTD</span>
+        <a href="profile.html" class="flex-1 py-2 rounded-xl text-xs font-semibold text-slate-500 text-center"><i class="fa-regular fa-user mr-1"></i>我的</a>
+      </div>
+    </nav>
+    <header class="shrink-0 px-4 pb-1 flex items-center justify-between">
+      <div>
+        <p class="text-xs text-slate-500" id="greeting-text"></p>
+        <p class="text-[10px] text-slate-400" id="header-date"></p>
+      </div>
+      <button type="button" class="w-8 h-8 rounded-full bg-white border border-slate-100 shadow flex items-center justify-center text-slate-600 text-xs"><i class="fa-solid fa-bars"></i></button>
+    </header>
+    <main class="flex-1 min-h-0 overflow-y-auto hide-scrollbar px-4 space-y-2 pb-2">
+      <section class="bg-white rounded-2xl shadow p-3 border border-slate-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-500 flex items-center gap-1"><i class="fa-solid fa-location-dot text-[#A5C9FF] text-[10px]"></i>上海</p>
+            <p class="text-[11px] text-slate-500">大部晴朗</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="text-[#FFB347] text-3xl anim-sun"><i class="fa-solid fa-sun"></i></div>
+            <p class="text-4xl font-extrabold leading-none">25°</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-1 mt-2" id="weather-metrics"></div>
+      </section>
+      <section class="bg-white rounded-2xl shadow p-3 border border-slate-50">
+        <h3 class="text-xs font-bold flex items-center gap-1"><i class="fa-regular fa-calendar-days text-[#A5C9FF] text-[10px]"></i>近 7 日天气</h3>
+        <div class="mt-1.5 flex gap-1.5 overflow-x-auto hide-scrollbar" id="forecast-list"></div>
+      </section>
+      <section class="bg-white rounded-2xl shadow p-3 border border-slate-50">
+        <h3 class="text-xs font-bold flex items-center gap-1"><i class="fa-solid fa-shirt text-[#FFB347] text-[10px]"></i>今日穿搭风格</h3>
+        <div class="mt-1.5 flex gap-1.5 overflow-x-auto hide-scrollbar flex-nowrap py-0.5" id="style-pills"></div>
+        <p class="mt-1 text-[10px] text-slate-500">已选：<span class="font-semibold text-[#1E3A8A]">运动休闲风</span></p>
+        <a href="ootd-popup.html" class="mt-2 w-full py-2.5 rounded-full bg-[#1E3A8A] text-white text-sm font-semibold flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>生成今日 OOTD
+        </a>
+      </section>
+    </main>
+    <div class="safe-bottom shrink-0 h-1"></div>
+  </div>
+  <script src="../js/common.js"></script>
+  <script>
+    document.getElementById('greeting-text').textContent = OOTD_DATA.greeting();
+    document.getElementById('header-date').textContent = OOTD_DATA.date();
+    renderMetrics(document.getElementById('weather-metrics'));
+    renderForecast(document.getElementById('forecast-list'));
+    renderStylePills(document.getElementById('style-pills'), OOTD_DATA.selectedStyle);
+  </script>
+</body>
+</html>

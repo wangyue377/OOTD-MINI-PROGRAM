@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>OOTD 结果弹窗</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+  <style>
+    .ootd-swiper { height: min(58vh, 480px); }
+    .ootd-swiper .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+    .swiper-pagination-bullet { width: 6px; height: 6px; }
+    .swiper-pagination-bullet-active { background: #1E3A8A !important; width: 18px; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased overflow-hidden">
+  <div class="phone-shell sun-glow flex flex-col overflow-hidden relative">
+    <!-- 底层：OOTD 首页（弱化） -->
+    <div class="absolute inset-0 flex flex-col opacity-30 pointer-events-none scale-[0.97] origin-top">
+      <nav class="safe-top shrink-0 px-4 pt-1 pb-2">
+        <div class="flex p-1 rounded-2xl bg-slate-100/90">
+          <span class="flex-1 py-2 rounded-xl text-xs font-semibold bg-[#1E3A8A] text-white text-center">OOTD</span>
+          <span class="flex-1 py-2 rounded-xl text-xs font-semibold text-slate-500 text-center">我的</span>
+        </div>
+      </nav>
+      <div class="px-4 space-y-2 mt-2">
+        <div class="h-20 rounded-2xl bg-white border border-slate-50"></div>
+        <div class="h-14 rounded-2xl bg-white border border-slate-50"></div>
+      </div>
+    </div>
+
+    <!-- 遮罩 + 大弹窗 -->
+    <div class="absolute inset-0 bg-black/45 backdrop-blur-sm flex items-end z-10">
+      <div class="w-full bg-white rounded-t-[1.75rem] shadow-2xl h-[88dvh] max-h-[88dvh] flex flex-col safe-bottom">
+        <div class="shrink-0 pt-2 pb-1 px-4">
+          <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-3"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold">今日 OOTD</h3>
+            <a href="ootd.html" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500" aria-label="关闭">
+              <i class="fa-solid fa-xmark"></i>
+            </a>
+          </div>
+          <div class="flex items-center gap-2 mt-2 text-xs text-slate-400">
+            <span class="px-2.5 py-1 rounded-full bg-blue-50 text-[#1E3A8A] font-semibold">运动休闲风</span>
+            <span>25° · 大部晴朗 · 上海</span>
+          </div>
+        </div>
+
+        <!-- AI 建议（紧凑） -->
+        <div class="shrink-0 px-4 pb-2">
+          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] font-semibold text-slate-400 mb-0.5">
+              <i class="fa-solid fa-robot text-[#A5C9FF] mr-0.5"></i>AI 穿搭建议
+            </p>
+            <p class="text-[11px] text-slate-600 leading-snug line-clamp-2" id="popup-ai-text"></p>
+          </div>
+        </div>
+
+        <!-- 穿搭大图轮播（主展示区） -->
+        <div class="flex-1 min-h-0 flex flex-col px-4 pb-4">
+          <p class="text-sm font-semibold text-slate-900 mb-2 shrink-0">穿搭参考 · 运动休闲风</p>
+          <div class="swiper ootd-swiper rounded-2xl overflow-hidden shadow-lg border border-slate-100 flex-1 w-full">
+            <div class="swiper-wrapper" id="swiper-wrapper"></div>
+            <div class="swiper-pagination !bottom-3"></div>
+          </div>
+          <p class="text-[10px] text-slate-400 text-center mt-2 shrink-0">左右滑动查看 3 套搭配</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="../js/common.js"></script>
+  <script>
+    document.getElementById('popup-ai-text').textContent = OOTD_DATA.aiText;
+    document.getElementById('swiper-wrapper').innerHTML = OOTD_DATA.outfitImages.map((src, i) => `
+      <div class="swiper-slide">
+        <img src="${src}" alt="运动休闲风穿搭参考 ${i + 1}" loading="lazy" />
+      </div>
+    `).join('');
+    new Swiper('.ootd-swiper', {
+      loop: true,
+      spaceBetween: 12,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      autoplay: { delay: 4000, disableOnInteraction: false },
+    });
+  </script>
+</body>
+</html>

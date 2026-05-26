@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>天气 · OOTD — 原型总览</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; }
+    .device-frame {
+      width: 390px;
+      height: 844px;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.06);
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .device-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .gallery-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .gallery-scroll::-webkit-scrollbar { height: 8px; }
+    .gallery-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen antialiased">
+  <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-200 px-6 py-4">
+    <h1 class="text-xl font-bold">天气 + OOTD 小程序 · 原型总览</h1>
+    <p class="text-sm text-slate-500 mt-1">四屏并排预览 · 390×844（iPhone 14 Pro）· 可横向滚动</p>
+    <nav class="flex flex-wrap gap-3 mt-3 text-sm">
+      <a href="pages/onboarding.html" target="_blank" class="text-[#1E3A8A] hover:underline">单独打开：首次引导</a>
+      <a href="pages/ootd.html" target="_blank" class="text-[#1E3A8A] hover:underline">首页 OOTD</a>
+      <a href="pages/ootd-popup.html" target="_blank" class="text-[#1E3A8A] hover:underline">OOTD 弹窗</a>
+      <a href="pages/profile.html" target="_blank" class="text-[#1E3A8A] hover:underline">我的</a>
+      <a href="DESIGN.md" target="_blank" class="text-slate-500 hover:underline">设计文档</a>
+    </nav>
+  </header>
+
+  <main class="gallery-scroll px-6 py-8">
+    <div class="flex gap-8 w-max min-w-full justify-center pb-4">
+      <!-- 1 首次引导 -->
+      <article class="flex flex-col items-center gap-3">
+        <div class="text-center">
+          <h2 class="font-semibold text-slate-900">① 首次使用引导</h2>
+          <p class="text-xs text-slate-500 mt-0.5">欢迎页 + 资料完善 Sheet</p>
+        </div>
+        <div class="device-frame">
+          <iframe src="pages/onboarding.html" title="首次使用引导"></iframe>
+        </div>
+      </article>
+
+      <!-- 2 首页 OOTD -->
+      <article class="flex flex-col items-center gap-3">
+        <div class="text-center">
+          <h2 class="font-semibold text-slate-900">② 首页 · OOTD</h2>
+          <p class="text-xs text-slate-500 mt-0.5">今日天气 · 7日预报 · 穿搭风格</p>
+        </div>
+        <div class="device-frame">
+          <iframe src="pages/ootd.html" title="首页 OOTD"></iframe>
+        </div>
+      </article>
+
+      <!-- 3 OOTD 弹窗 -->
+      <article class="flex flex-col items-center gap-3">
+        <div class="text-center">
+          <h2 class="font-semibold text-slate-900">③ OOTD 结果弹窗</h2>
+          <p class="text-xs text-slate-500 mt-0.5">AI 建议 + 穿搭图轮播</p>
+        </div>
+        <div class="device-frame">
+          <iframe src="pages/ootd-popup.html" title="OOTD 弹窗"></iframe>
+        </div>
+      </article>
+
+      <!-- 4 我的 -->
+      <article class="flex flex-col items-center gap-3">
+        <div class="text-center">
+          <h2 class="font-semibold text-slate-900">④ 我的</h2>
+          <p class="text-xs text-slate-500 mt-0.5">城市 · 性别 · 个人描述</p>
+        </div>
+        <div class="device-frame">
+          <iframe src="pages/profile.html" title="我的"></iframe>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="text-center text-xs text-slate-400 pb-8 px-4">
+    开发映射建议：<code class="bg-slate-200 px-1 rounded">pages/onboarding</code> ·
+    <code class="bg-slate-200 px-1 rounded">pages/ootd/index</code> ·
+    <code class="bg-slate-200 px-1 rounded">components/ootd-popup</code> ·
+    <code class="bg-slate-200 px-1 rounded">pages/profile/index</code>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<view class="phone-shell sun-glow">
+  <view class="safe-top" style="height: {{statusBarHeight}}px;"></view>
+
+  <nav class="nav-container">
+    <view class="tab-wrapper">
+      <view class="tab-btn active">
+        <text class="icon-mini">☁️</text> OOTD
+      </view>
+      <navigator url="/pages/profile/profile" open-type="reLaunch" class="tab-btn">
+        <text class="icon-mini">👤</text> 我的
+      </navigator>
+    </view>
+  </nav>
+
+  <view class="header-section">
+    <view class="title-group">
+      <text class="main-title">今天</text>
+      <text class="sub-title">{{weatherNow.predict_date || '5月27日'}} · {{city}}</text>
+    </view>
+    <view class="weather-badge">
+      <text class="temp">{{weatherNow.temp_high || '--'}}°</text>
+      <text class="weather-icon">{{weatherIcons[weatherNow.condition] || weatherIcons['默认']}}</text>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="main-scroll">
+    <view class="content-padding">
+      
+      <section class="card shadow-sm">
+        <block wx:if="{{loading}}">
+          <view style="padding: 10rpx;">
+            <skeleton width="100%" height="120rpx" radius="24rpx" animated />
+          </view>
+        </block>
+        <block wx:else>
+          <view class="card-header">
+            <text class="card-icon blue">🌤️</text>
+            <text class="card-title">今日预报</text>
+          </view>
+          <view class="weather-detail">
+            <view class="detail-item">
+              <text class="detail-val">{{weatherNow.temp_high}}° / {{weatherNow.temp_low}}°</text>
+              <text class="detail-lab">气温</text>
+            </view>
+            <view class="detail-line"></view>
+            <view class="detail-item">
+              <text class="detail-val">{{weatherNow.condition}}</text>
+              <text class="detail-lab">天气</text>
+            </view>
+            <view class="detail-line"></view>
+            <view class="detail-item">
+              <text class="detail-val">{{weatherNow.wind_dir_day}}</text>
+              <text class="detail-lab">风向</text>
+            </view>
+          </view>
+        </block>
+      </section>
+
+      <section class="card shadow-sm mt-3">
+        <block wx:if="{{loading}}">
+          <view style="display: flex; gap: 20rpx; padding: 10rpx;">
+            <skeleton wx:for="{{5}}" wx:key="*this" width="120rpx" height="180rpx" radius="16rpx" animated />
+          </view>
+        </block>
+        <block wx:else>
+          <view class="card-header">
+            <text class="card-icon light-blue">📅</text>
+            <text class="card-title">近 7 日天气预报</text>
+          </view>
+          <scroll-view scroll-x class="forecast-x" enhanced show-scrollbar="{{false}}">
+            <block wx:for="{{forecast}}" wx:key="predict_date">
+              <view class="forecast-item">
+                <text class="fc-day">{{item.predict_date === weatherNow.predict_date ? '今天' : item.predict_date}}</text>
+                <text class="fc-temp">{{item.temp_high}}°/{{item.temp_low}}°</text>
+                <text class="fc-icon-small">{{weatherIcons[item.condition] || weatherIcons['默认']}}</text>
+              </view>
+            </block>
+          </scroll-view>
+        </block>
+      </section>
+
+      <section class="card shadow-sm mt-3">
+        <view class="card-header">
+          <text class="card-icon orange">👕</text>
+          <text class="card-title">今日穿搭风格</text>
+        </view>
+        <view class="style-container">
+          <block wx:for="{{styleList}}" wx:key="*this">
+            <view 
+              class="style-pill {{selectedStyle === item ? 'active' : ''}}" 
+              data-style="{{item}}" 
+              bindtap="onSelectStyle"
+            >
+              {{item}}
+            </view>
+          </block>
+        </view>
+        <view class="generate-section mt-4">
+          <view class="style-desc">
+            <text>已选：</text>
+            <text class="highlight">{{selectedStyle}}</text>
+          </view>
+          <button class="magic-btn mt-3" bindtap="handleGenerate" hover-class="btn-hover">
+            <text class="magic-icon">✨</text> 生成今日 OOTD
+          </button>
+        </view>
+
+        <ootd-popup 
+          show="{{isPopupShow}}" 
+          selectedStyle="{{selectedStyle}}" 
+          aiResult="{{aiResult}}" 
+          weather="{{weatherNow}}" 
+          city="{{city}}" 
+          bind:close="hideOotdPopup" 
+        />
+      </section>
+
+    </view>
+  </scroll-view>
+</view>

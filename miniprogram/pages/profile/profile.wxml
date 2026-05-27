@@ -1,0 +1,52 @@
+<view class="phone-shell sun-glow">
+  <view class="safe-top" style="height: {{statusBarHeight}}px;"></view>
+
+  <nav class="nav-container">
+    <view class="tab-wrapper">
+      <navigator url="/pages/ootd/ootd" open-type="reLaunch" class="tab-btn">
+        <text class="icon-mini">☁️</text> OOTD
+      </navigator>
+      <view class="tab-btn active">
+        <text class="icon-mini">👤</text> 我的
+      </view>
+    </view>
+  </nav>
+
+  <view class="header-section">
+    <view class="title-group">
+      <text class="main-title">我的</text>
+      <text class="sub-title">个人资料</text>
+    </view>
+    <view class="round-menu-btn">
+      <text class="menu-icon">☰</text>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="form-scroll">
+    <view class="input-card">
+      <text class="field-label">城市</text>
+      <view class="input-row">
+        <text class="field-icon">🏙️</text>
+        <input class="field-input" type="text" value="{{city}}" bindinput="onCityInput" />
+      </view>
+    </view>
+
+    <view class="input-card">
+      <text class="field-label">性别</text>
+      <view class="gender-selector">
+        <view class="gender-option {{gender === 'male' ? 'active' : ''}}" 
+              data-g="male" bindtap="onPickGender">男生</view>
+        <view class="gender-option {{gender === 'female' ? 'active' : ''}}" 
+              data-g="female" bindtap="onPickGender">女生</view>
+      </view>
+    </view>
+
+    <view class="input-card">
+      <text class="field-label">个人描述</text>
+      <textarea class="field-textarea" auto-height value="{{description}}" bindinput="onDescInput" />
+    </view>
+
+    <button class="submit-btn" bindtap="onSave">保存并同步</button>
+
+  </scroll-view>
+</view>

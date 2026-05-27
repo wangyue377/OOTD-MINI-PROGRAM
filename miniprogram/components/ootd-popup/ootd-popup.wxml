@@ -1,0 +1,30 @@
+<view class="modal-mask {{show ? 'show' : ''}}" bindtap="onClose">
+  <view class="popup-container {{show ? 'slide-up' : ''}}" catchtap="noop">
+    <view class="popup-header">
+      <view class="title-area">
+        <text class="h3">今日 OOTD</text>
+        <view class="info-tags">
+          <text class="tag-pill">{{selectedStyle}}</text> 
+          <text class="info-text">{{weather.temp_high}}° · {{weather.condition}} · {{city}}</text>
+        </view>
+      </view>
+      <view class="close-icon-btn" bindtap="onClose">✕</view>
+    </view>
+
+    <view class="ai-box">
+      <view class="ai-label">🤖 AI 穿搭建议</view>
+      <text class="ai-content">{{aiResult.output}}</text>
+    </view>
+
+    <view class="display-area">
+      <text class="display-title">穿搭参考 · {{selectedStyle}}</text>
+      <swiper class="ootd-swiper" indicator-dots circular autoplay>
+        <block wx:for="{{aiResult.data_list}}" wx:key="*this">
+          <swiper-item>
+            <image class="outfit-img" src="{{item}}" mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+</view>

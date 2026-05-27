@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ootd-popup": "/components/ootd-popup/ootd-popup",
+    "skeleton": "/components/skeleton/skeleton"
+  }
+}

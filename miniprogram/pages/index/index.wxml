@@ -1,27 +1,73 @@
-<!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-        </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
+<!-- 首次使用引导 · prototype/pages/onboarding.html -->
+<view class="page">
+
+  <!-- 欢迎页 -->
+  <view class="screen welcome" wx:if="{{step === 'welcome'}}" style="padding-top: {{statusBarHeight}}px;">
+    <view class="rings"></view>
+    <view class="welcome-sun">
+      <text class="icon-sun">☀️</text>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view class="welcome-main">
+      <text class="welcome-title">再也不怕突然下雨</text>
+      <text class="welcome-desc">结合天气与风格偏好，一键生成今日 OOTD</text>
+    </view>
+    <view class="welcome-clouds">
+      <text class="cloud cloud-a">☁️</text>
+      <text class="cloud cloud-b">🌥️</text>
+    </view>
+    <view class="welcome-foot">
+      <button class="btn-main" bindtap="onGetStarted">开始使用</button>
     </view>
   </view>
-</scroll-view>
+
+  <!-- 资料引导 Sheet -->
+  <view class="screen guide-overlay" wx:if="{{step === 'guide'}}" catchtouchmove="noop">
+    <view class="guide-panel">
+      <view class="guide-bar"></view>
+      <text class="guide-h1">完善你的资料</text>
+      <text class="guide-p">帮助我们生成更贴合你的 OOTD 建议</text>
+
+      <view class="field">
+        <text class="field-label">所在城市</text>
+        <view class="field-box row">
+          <text class="field-ico">📍</text>
+          <input class="field-inp" placeholder="例如：上海" value="{{city}}" bindinput="onCityInput" />
+        </view>
+      </view>
+
+      <view class="field">
+        <text class="field-label">性别</text>
+        <view class="gender-wrap row">
+          <view class="gender-btn {{gender === 'male' ? 'gender-on' : ''}}" data-g="male" bindtap="onPickGender">
+            <text class="field-ico">👨</text>
+            <text>男生</text>
+          </view>
+          <view class="gender-btn {{gender === 'female' ? 'gender-on' : ''}}" data-g="female" bindtap="onPickGender">
+            <text class="field-ico">👩</text>
+            <text>女生</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="field">
+        <text class="field-label">个人描述</text>
+        <view class="field-box">
+          <textarea class="field-area" placeholder="例如：偏爱宽松、常通勤" value="{{description}}" maxlength="200" bindinput="onDescInput" />
+        </view>
+      </view>
+
+      <button class="btn-main field-btn" bindtap="onSave">保存并继续</button>
+    </view>
+  </view>
+
+  <!-- 已完成（资料已保存，待接入 OOTD 主页） -->
+  <view class="screen done" wx:if="{{step === 'done'}}" style="padding-top: {{statusBarHeight}}px;">
+    <view class="done-content">
+      <text class="done-ico">✅</text>
+      <text class="done-title">资料已完善</text>
+      <text class="done-sub">{{city}} · {{gender === 'female' ? '女生' : '男生'}}</text>
+    </view>
+    <button class="btn-reset" bindtap="goToProfile">进入个人主页</button>
+  </view>
+
+</view>

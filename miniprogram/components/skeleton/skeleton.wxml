@@ -1,0 +1,2 @@
+<view class="skeleton-wrapper {{animated ? 'animate' : ''}}" style="width:{{width}}; height:{{height}}; border-radius:{{radius}};">
+</view>

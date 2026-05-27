@@ -1,0 +1,62 @@
+📁 文件夹目录树：D:\develop\claudecode\OOTD-MINI-PROGRAM
+==================================================
+├── miniprogram
+│   ├── components
+│   │   └── ootd-popup
+│   │       ├── ootd-popup.js
+│   │       ├── ootd-popup.json
+│   │       ├── ootd-popup.wxml
+│   │       └── ootd-popup.wxss
+│   ├── images
+│   │   ├── outfit-1.jpg
+│   │   ├── outfit-2.jpg
+│   │   └── outfit-3.jpg
+│   ├── pages
+│   │   ├── index
+│   │   │   ├── index.js
+│   │   │   ├── index.json
+│   │   │   ├── index.wxml
+│   │   │   └── index.wxss
+│   │   ├── logs
+│   │   │   ├── logs.js
+│   │   │   ├── logs.json
+│   │   │   ├── logs.wxml
+│   │   │   └── logs.wxss
+│   │   ├── ootd
+│   │   │   ├── ootd.js
+│   │   │   ├── ootd.json
+│   │   │   ├── ootd.wxml
+│   │   │   └── ootd.wxss
+│   │   └── profile
+│   │       ├── profile.js
+│   │       ├── profile.json
+│   │       ├── profile.wxml
+│   │       └── profile.wxss
+│   ├── utils
+│   │   └── util.js
+│   ├── app.js
+│   ├── app.json
+│   ├── app.wxss
+│   ├── project.config.json
+│   ├── project.private.config.json
+│   └── sitemap.json
+├── prototype
+│   ├── css
+│   │   └── common.css
+│   ├── images
+│   │   ├── outfit-1.jpg
+│   │   ├── outfit-2.jpg
+│   │   └── outfit-3.jpg
+│   ├── js
+│   │   └── common.js
+│   ├── pages
+│   │   ├── onboarding.html
+│   │   ├── ootd-popup.html
+│   │   ├── ootd.html
+│   │   └── profile.html
+│   ├── DESIGN.md
+│   ├── README.md
+│   └── index.html
+├── server
+├── docs.md
+└── 目录树结构.txt
